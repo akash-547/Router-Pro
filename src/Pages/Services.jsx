@@ -23,6 +23,7 @@ const Services = () => {
   ];
 
   return (
+    <Container>
     <div className="bg-[#f3f4f6] min-h-[85vh] py-12 px-6 flex flex-col justify-center">
       <div className="max-w-6xl mx-auto">
         
@@ -70,6 +71,7 @@ const Services = () => {
 
       </div>
     </div>
+    </Container>
   );
 };
 

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-
+import Button from "./Ui/Button";
 const Sidebar = () => {
   const menuItems = [
     { name: "Main Dashboard", path: "/dashboard" },

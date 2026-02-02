@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
+import Button from "../Components/Ui/Button";
 
 export const Signup = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
-  
+
   const [showPopup, setShowPopup] = useState(false);
   const [error, setError] = useState("");
   const [passwords, setPasswords] = useState({ pass: "", confirm: "" });
@@ -32,12 +34,15 @@ export const Signup = () => {
 
   return (
     <div className="bg-[#f8fafc] min-h-screen flex items-center justify-center px-6 relative overflow-hidden font-sans">
-      
       {/* TOP POPUP - Loader ki jagah ab ye sidha show hoga */}
       {showPopup && (
         <div className="absolute top-10 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-in slide-in-from-top-10 duration-500 border border-slate-700">
-          <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-[10px]">✓</div>
-          <span className="text-sm font-bold tracking-tight">Success! Redirecting to Dashboard...</span>
+          <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-[10px]">
+            ✓
+          </div>
+          <span className="text-sm font-bold tracking-tight">
+            Success! Redirecting to Dashboard...
+          </span>
         </div>
       )}
 
@@ -54,51 +59,69 @@ export const Signup = () => {
         <div className="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-50">
           <form onSubmit={handleSignup} className="space-y-4">
             <div className="space-y-3">
-              <input 
-                type="text" 
-                placeholder="Full Name" 
-                required 
-                className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-2xl focus:border-orange-500 outline-none text-sm font-medium transition-all" 
+              <input
+                type="text"
+                placeholder="Full Name"
+                required
+                className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-2xl focus:border-orange-500 outline-none text-sm font-medium transition-all"
               />
-              <input 
-                type="email" 
-                placeholder="Email Address" 
-                required 
-                className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-2xl focus:border-orange-500 outline-none text-sm font-medium transition-all" 
+              <input
+                type="email"
+                placeholder="Email Address"
+                required
+                className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-2xl focus:border-orange-500 outline-none text-sm font-medium transition-all"
               />
             </div>
 
             <div className="pt-2 space-y-3">
-              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2 italic">Security</p>
-              <input 
-                type="password" 
-                placeholder="Password" 
-                required 
+              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2 italic">
+                Security
+              </p>
+              <input
+                type="password"
+                placeholder="Password"
+                required
                 className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-2xl focus:border-orange-500 outline-none text-sm font-medium transition-all"
-                onChange={(e) => setPasswords({...passwords, pass: e.target.value})}
+                onChange={(e) =>
+                  setPasswords({ ...passwords, pass: e.target.value })
+                }
               />
-              <input 
-                type="password" 
-                placeholder="Confirm Password" 
-                required 
-                className={`w-full bg-slate-50 border p-3.5 rounded-2xl outline-none text-sm font-medium transition-all ${error ? 'border-red-500 ring-2 ring-red-50' : 'border-slate-200 focus:border-orange-500'}`}
-                onChange={(e) => setPasswords({...passwords, confirm: e.target.value})}
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                required
+                className={`w-full bg-slate-50 border p-3.5 rounded-2xl outline-none text-sm font-medium transition-all ${error ? "border-red-500 ring-2 ring-red-50" : "border-slate-200 focus:border-orange-500"}`}
+                onChange={(e) =>
+                  setPasswords({ ...passwords, confirm: e.target.value })
+                }
               />
-              {error && <p className="text-red-500 text-[10px] font-bold ml-2 italic">{error}</p>}
+              {error && (
+                <p className="text-red-500 text-[10px] font-bold ml-2 italic">
+                  {error}
+                </p>
+              )}
             </div>
 
-            <button 
-              type="submit" 
-              className="w-full bg-slate-900 text-white py-4 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-orange-500 transition-all shadow-lg active:scale-95 mt-4"
+            <Button
+              type="submit"
+              fullWidth
+              variant="primary"
+              className="py-4 rounded-2xl text-xs uppercase tracking-widest mt-4"
             >
               Sign Up Now
-            </button>
+            </Button>
           </form>
         </div>
 
         {/* Login Link */}
         <p className="text-center mt-8 text-slate-400 text-xs font-bold uppercase tracking-widest">
-          Already have an account? <span className="text-orange-500 cursor-pointer hover:underline">Login</span>
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            className="text-orange-500 cursor-pointer hover:underline"
+          >
+            Login
+          </Link>
         </p>
       </div>
     </div>

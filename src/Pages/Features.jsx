@@ -1,3 +1,5 @@
+import Container from "./Container/Container";
+
 const Features = () => {
   const features = [
     { title: "Fast Performance", desc: "Optimized load times for a seamless user experience." },
@@ -7,6 +9,7 @@ const Features = () => {
   ];
 
   return (
+    <Container>
     <div className="bg-[#f3f4f6] min-h-[80vh] flex items-center py-12 px-6">
       <div className="max-w-6xl mx-auto w-full">
         
@@ -50,6 +53,7 @@ const Features = () => {
         <div className="mt-16 border-t border-gray-200 opacity-50"></div>
       </div>
     </div>
+    </Container>
   );
 };
 

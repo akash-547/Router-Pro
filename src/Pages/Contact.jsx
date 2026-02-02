@@ -1,5 +1,8 @@
+import Container from "./Container/Container";
+
 const Contact = () => {
   return (
+    <Container>
     <div className="bg-[#f3f4f6] min-h-[75vh] flex items-center justify-center px-6">
       <div className="max-w-sm w-full">
         
@@ -44,6 +47,7 @@ const Contact = () => {
 
       </div>
     </div>
+    </Container>
   );
 };
 

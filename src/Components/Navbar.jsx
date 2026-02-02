@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-
+import Button from "./Ui/Button";
 const Navbar = () => {
   // Active link styling: Text orange ho jayega aur bottom mein ek dot aayega
   const navLinkStyles = ({ isActive }) =>
@@ -12,11 +12,8 @@ const Navbar = () => {
       
       {/* 1. LOGO SECTION */}
       <div className="flex items-center gap-2 group cursor-pointer">
-        <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
-          <span className="text-white font-black text-xl">O</span>
-        </div>
         <span className="text-2xl font-black text-slate-900 tracking-tighter">
-          ORANGE<span className="text-orange-500">CORE</span>
+          <span className="text-orange-500">LOGO</span>
         </span>
       </div>
 
@@ -30,21 +27,15 @@ const Navbar = () => {
       </div>
 
       {/* 3. BUTTONS SECTION */}
-      <div className="flex items-center gap-4">
-        <NavLink 
-          to="/login" 
-          className="text-slate-800 font-bold hover:text-orange-500 transition-colors px-4 py-2"
-        >
-          LOG IN
-        </NavLink>
-        
-        <NavLink 
-          to="/signup" 
-          className="bg-slate-900 text-white px-7 py-2.5 rounded-md font-bold hover:bg-orange-500 hover:shadow-[0_4px_20px_rgba(249,115,22,0.4)] transition-all active:scale-95"
-        >
-          SIGN UP
-        </NavLink>
-      </div>
+    <div className="flex items-center gap-2">
+  <Button to="/login" variant="ghost">
+    LOG IN
+  </Button>
+  
+  <Button to="/signup" className="rounded-md shadow-md">
+    SIGN UP
+  </Button>
+</div>
     </nav>
   );
 };

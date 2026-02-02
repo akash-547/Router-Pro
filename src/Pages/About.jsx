@@ -1,5 +1,8 @@
+import Container from "./Container/Container";
+
 const About = () => {
   return (
+    <Container>
     <div className="bg-[#f3f4f6] min-h-[80vh] flex items-center justify-center py-12 px-6">
       <div className="max-w-3xl mx-auto text-center">
         
@@ -41,6 +44,7 @@ const About = () => {
 
       </div>
     </div>
+    </Container>
   );
 };
 
