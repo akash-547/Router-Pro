@@ -1,51 +1,108 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
-function isValidEmail(e){ return /\S+@\S+\.\S+/.test(e) }
+export const Signup = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  
+  const [showPopup, setShowPopup] = useState(false);
+  const [error, setError] = useState("");
+  const [passwords, setPasswords] = useState({ pass: "", confirm: "" });
 
-export default function Signup(){
-  const navigate = useNavigate()
-  const { signup } = useAuth()
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+  const handleSignup = (e) => {
+    e.preventDefault();
+    setError("");
 
-  function submit(e){
-    e.preventDefault()
-    setError('')
-    if(!name) return setError('Please enter your name')
-    if(!email) return setError('Please enter your email')
-    if(!isValidEmail(email)) return setError('Please enter a valid email')
-    setLoading(true)
-    setTimeout(()=>{
-      signup({ name, email })
-      setLoading(false)
-      navigate('/dashboard')
-    }, 600)
-  }
+    // Password Check
+    if (passwords.pass !== passwords.confirm) {
+      setError("Passwords do not match!");
+      return;
+    }
+
+    // Direct Success Action
+    setShowPopup(true);
+
+    // 2 Second baad dashboard par transfer
+    setTimeout(() => {
+      login();
+      navigate("/dashboard");
+    }, 2000);
+  };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded shadow">
-      <h1 className="text-2xl font-semibold mb-4">Signup</h1>
-      <form onSubmit={submit} className="space-y-3">
-        <div>
-          <label className="block text-sm mb-1">Name</label>
-          <input value={name} onChange={e=>setName(e.target.value)} placeholder="Your name" className="w-full px-3 py-2 border rounded" />
+    <div className="bg-[#f8fafc] min-h-screen flex items-center justify-center px-6 relative overflow-hidden font-sans">
+      
+      {/* TOP POPUP - Loader ki jagah ab ye sidha show hoga */}
+      {showPopup && (
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-in slide-in-from-top-10 duration-500 border border-slate-700">
+          <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-[10px]">✓</div>
+          <span className="text-sm font-bold tracking-tight">Success! Redirecting to Dashboard...</span>
         </div>
-        <div>
-          <label className="block text-sm mb-1">Email</label>
-          <input value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@example.com" className="w-full px-3 py-2 border rounded" />
+      )}
+
+      <div className="w-full max-w-sm">
+        {/* Simple Heading */}
+        <div className="text-center mb-8">
+          <h1 className="text-2xl font-black text-slate-900 uppercase tracking-tighter">
+            Create <span className="text-orange-500">Account</span>
+          </h1>
+          <div className="w-10 h-1 bg-orange-500 mx-auto mt-2 rounded-full"></div>
         </div>
-        <div>
-          <label className="block text-sm mb-1">Password</label>
-          <input value={password} onChange={e=>setPassword(e.target.value)} placeholder="Password" type="password" className="w-full px-3 py-2 border rounded" />
+
+        {/* Clean Form Container */}
+        <div className="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-50">
+          <form onSubmit={handleSignup} className="space-y-4">
+            <div className="space-y-3">
+              <input 
+                type="text" 
+                placeholder="Full Name" 
+                required 
+                className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-2xl focus:border-orange-500 outline-none text-sm font-medium transition-all" 
+              />
+              <input 
+                type="email" 
+                placeholder="Email Address" 
+                required 
+                className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-2xl focus:border-orange-500 outline-none text-sm font-medium transition-all" 
+              />
+            </div>
+
+            <div className="pt-2 space-y-3">
+              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-2 italic">Security</p>
+              <input 
+                type="password" 
+                placeholder="Password" 
+                required 
+                className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-2xl focus:border-orange-500 outline-none text-sm font-medium transition-all"
+                onChange={(e) => setPasswords({...passwords, pass: e.target.value})}
+              />
+              <input 
+                type="password" 
+                placeholder="Confirm Password" 
+                required 
+                className={`w-full bg-slate-50 border p-3.5 rounded-2xl outline-none text-sm font-medium transition-all ${error ? 'border-red-500 ring-2 ring-red-50' : 'border-slate-200 focus:border-orange-500'}`}
+                onChange={(e) => setPasswords({...passwords, confirm: e.target.value})}
+              />
+              {error && <p className="text-red-500 text-[10px] font-bold ml-2 italic">{error}</p>}
+            </div>
+
+            <button 
+              type="submit" 
+              className="w-full bg-slate-900 text-white py-4 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-orange-500 transition-all shadow-lg active:scale-95 mt-4"
+            >
+              Sign Up Now
+            </button>
+          </form>
         </div>
-        {error && <div className="text-red-600">{error}</div>}
-        <button disabled={loading} className="px-4 py-2 bg-black text-white rounded">{loading ? 'Signing up...' : 'Sign up'}</button>
-      </form>
+
+        {/* Login Link */}
+        <p className="text-center mt-8 text-slate-400 text-xs font-bold uppercase tracking-widest">
+          Already have an account? <span className="text-orange-500 cursor-pointer hover:underline">Login</span>
+        </p>
+      </div>
     </div>
-  )
-} 
+  );
+};
+
+export default Signup;

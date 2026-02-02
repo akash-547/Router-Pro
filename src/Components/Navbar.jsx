@@ -1,40 +1,52 @@
-import React from 'react'
-import Logo from '../assets/Logo.png'
-import { NavLink, useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { NavLink } from "react-router-dom";
 
-function Navbar() {
-  const { user, logout } = useAuth()
-  const navigate = useNavigate()
+const Navbar = () => {
+  // Active link styling: Text orange ho jayega aur bottom mein ek dot aayega
+  const navLinkStyles = ({ isActive }) =>
+    `relative font-bold text-sm uppercase tracking-wider transition-all duration-300 hover:text-orange-500 ${
+      isActive ? "text-orange-500" : "text-slate-800"
+    }`;
 
   return (
-    <div className='navbar w-full flex justify-around items-center py-4 px-4'>
-      <div className='flex items-center gap-20'>
-        <img src={Logo} alt="" className='w-37.5'/>
-        <ul className="hidden md:flex py-3 px-7 rounded-3xl shadow-[0px_0px_30px_0px_rgba(0,0,0,0.1)] gap-3">
-          <NavLink to='/'><li className="px-3 py-1 text-black">Home</li></NavLink>
-          <NavLink to='/product'><li className="px-3 py-1 text-black">Products</li></NavLink>
-          <NavLink to='/about'><li className="px-3 py-1 text-black">About</li></NavLink>
-          <NavLink to='/contact'><li className="px-3 py-1 text-black">Contact</li></NavLink>
-        </ul>
+    <nav className="bg-[#f3f4f6] border-b border-gray-300 shadow-sm px-10 py-4 flex items-center justify-between sticky top-0 z-50">
+      
+      {/* 1. LOGO SECTION */}
+      <div className="flex items-center gap-2 group cursor-pointer">
+        <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+          <span className="text-white font-black text-xl">O</span>
+        </div>
+        <span className="text-2xl font-black text-slate-900 tracking-tighter">
+          ORANGE<span className="text-orange-500">CORE</span>
+        </span>
       </div>
 
-      <div>
-        {user ? (
-          <div className='flex justify-center items-center gap-3'>
-            <span className='text-sm'>Hi, {user.name}</span>
-            <button onClick={() => { logout(); navigate('/') }} className='px-3 py-1 bg-gray-100 rounded'>Logout</button>
-          </div>
-        ) : (
-          <div className='flex items-center gap-2'>
-            <NavLink to='/login' className='px-3 py-2 rounded border'>Log in</NavLink>
-            <NavLink to='/signup' className='px-3 py-2 rounded bg-black text-white'>Sign up</NavLink>
-          </div>
-        )}
+      {/* 2. NAVIGATION LINKS */}
+      <div className="hidden md:flex items-center gap-8">
+        <NavLink to="/" className={navLinkStyles}>Home</NavLink>
+        <NavLink to="/about" className={navLinkStyles}>About</NavLink>
+        <NavLink to="/services" className={navLinkStyles}>Services</NavLink>
+        <NavLink to="/features" className={navLinkStyles}>Features</NavLink>
+        <NavLink to="/contact" className={navLinkStyles}>Contact</NavLink>
       </div>
-    </div>
-  )
-}
 
-export default Navbar
+      {/* 3. BUTTONS SECTION */}
+      <div className="flex items-center gap-4">
+        <NavLink 
+          to="/login" 
+          className="text-slate-800 font-bold hover:text-orange-500 transition-colors px-4 py-2"
+        >
+          LOG IN
+        </NavLink>
+        
+        <NavLink 
+          to="/signup" 
+          className="bg-slate-900 text-white px-7 py-2.5 rounded-md font-bold hover:bg-orange-500 hover:shadow-[0_4px_20px_rgba(249,115,22,0.4)] transition-all active:scale-95"
+        >
+          SIGN UP
+        </NavLink>
+      </div>
+    </nav>
+  );
+};
 
+export default Navbar;
