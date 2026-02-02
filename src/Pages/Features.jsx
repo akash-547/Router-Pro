@@ -23,7 +23,7 @@ const Features = () => {
           {features.map((f, i) => (
             <div 
               key={i} 
-              className="relative bg-white p-8 rounded-[2rem] border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden"
+              className="relative bg-white p-8 rounded-4xl border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden"
             >
               {/* Background Number Decoration */}
               <span className="absolute -top-4 -right-2 text-8xl font-black text-slate-50 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity">

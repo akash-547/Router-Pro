@@ -11,7 +11,6 @@ function DashboardLayout() {
                     <Outlet />
                 </main>
             </div>
-            <Footer />
         </div>
     );
 }

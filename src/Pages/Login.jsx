@@ -38,7 +38,7 @@ export const Login = () => {
 
         <form 
           onSubmit={handleLogin} 
-          className="bg-white p-8 rounded-[2rem] shadow-xl border border-gray-100 space-y-4"
+          className="bg-white p-8 rounded-4xl shadow-xl border border-gray-100 space-y-4"
         >
           {error && (
             <div className="bg-red-50 text-red-600 text-[10px] font-bold p-3 rounded-lg text-center border border-red-100 uppercase">

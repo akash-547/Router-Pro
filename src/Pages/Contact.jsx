@@ -12,7 +12,7 @@ const Contact = () => {
 
         {/* COMPACT FORM */}
         <form 
-          className="bg-white p-6 rounded-[2rem] shadow-xl shadow-slate-200/50 border border-gray-100 space-y-3"
+          className="bg-white p-6 rounded-4xl shadow-xl shadow-slate-200/50 border border-gray-100 space-y-3"
           onSubmit={(e) => e.preventDefault()}
         >
           <input 
@@ -40,7 +40,7 @@ const Contact = () => {
             Send Message
           </button>
         </form>
-    
+
 
       </div>
     </div>

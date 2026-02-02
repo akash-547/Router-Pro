@@ -36,6 +36,7 @@ function App() {
         <Route path="users/:id" element={<UserDetail />} />
         <Route path="analytics" element={<Analytics />} />
         <Route path="settings" element={<Settings />} />
+        <Route path="/dashboard/users/:id" element={<UserDetail />} />
       </Route>
 
       {/* Not found */}
