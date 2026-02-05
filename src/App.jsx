@@ -15,9 +15,11 @@ import UserProfile from "./Pages/Dashboard/UserProfile";
 import Analytics from "./Pages/Dashboard/Analytics";
 import Settings from "./Pages/Dashboard/Settings";
 import NotFound from "./Pages/NotFound";
+import Provider from "./Context/Provider";
 
 function App() {
   return (
+    <Provider>
     <Routes>
       {/* Public */}
       <Route element={<MainLayout />}>
@@ -44,6 +46,7 @@ function App() {
       {/* Not found */}
       <Route path="*" element={<NotFound />} />
     </Routes>
+    </Provider>
     
   );
 }
