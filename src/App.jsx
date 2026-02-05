@@ -11,6 +11,7 @@ import Signup from "./Pages/Signup";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Users from "./Pages/Dashboard/Users";
 import UserDetail from "./Pages/Dashboard/UserDetail";
+import UserProfile from "./Pages/Dashboard/UserProfile";
 import Analytics from "./Pages/Dashboard/Analytics";
 import Settings from "./Pages/Dashboard/Settings";
 import NotFound from "./Pages/NotFound";
@@ -35,6 +36,7 @@ function App() {
         <Route path="users" element={<Users />} />
         <Route path="users/:id" element={<UserDetail />} />
         <Route path="analytics" element={<Analytics />} />
+        <Route path="profile" element={<UserProfile />} />   
         <Route path="settings" element={<Settings />} />
         <Route path="/dashboard/users/:id" element={<UserDetail />} />
       </Route>

@@ -1,19 +1,25 @@
 import { useState } from "react";
-import { UserContext } from "./UserContext";
+import { Context } from "./Context";
 
-const UserProvider = ({ children }) => {
+const Provider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [signedIn, setSignedIn] = useState(false);
 
-  //   on sign up user info in user state
-  // set login states accordingly
-  // show user info on sidebar, profile
-  // add a logout button on side bar and add functionality
+  const login = (userData) => {
+    setUser(userData);
+    setSignedIn(true);
+  };
+
+  const logout = () => {
+    setUser(null);
+    setSignedIn(false);
+  };
 
   return (
-    <UserContext.Provider value={{ user, setUser, signedIn,   setSignedIn }}>
+    <Context.Provider value={{ user, signedIn, login, logout }}>
       {children}
-    </UserContext.Provider>
+    </Context.Provider>
   );
 };
-export default UserProvider;
+
+export default Provider;

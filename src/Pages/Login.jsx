@@ -1,28 +1,29 @@
-import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../Components/Ui/Button";
+import { Context } from "../Context/Context"; // ✅ IMPORTANT
 
-export const Login = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { login } = useAuth(); // Ensure login function exists in Context
+  const { login } = useContext(Context); // ✅ ab sahi hai
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
-    e.preventDefault(); // Sabse important: Taki page reload na ho
+    e.preventDefault();
 
-    console.log("Attempting login with:", email, password);
-
-    // Strict Check: Check if email and password are correct
+    // simple demo check
     if (email === "kashhussain512@gmail.com" && password === "123") {
-      console.log("Login Successful!");
-      login(); // Yeh aapki context state update karega
-      navigate("/dashboard"); // Redirect
+      // ✅ user data pass karna zaroori hai
+      login({
+        name: "Admin User",
+        email: email,
+      });
+
+      navigate("/dashboard");
     } else {
-      console.log("Login Failed!");
       setError("Invalid email or password.");
     }
   };
