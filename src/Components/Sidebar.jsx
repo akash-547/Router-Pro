@@ -10,7 +10,6 @@ const Sidebar = () => {
 
   return (
     <aside className="w-64 bg-slate-900 text-white p-6 min-h-screen flex flex-col border-r border-slate-800">
-      
       {/* Title Section */}
       <div className="mb-10 px-2">
         <h2 className="text-2xl font-black tracking-tighter uppercase text-white">
@@ -41,13 +40,13 @@ const Sidebar = () => {
 
       {/* Bottom Section: Home Link & Footer */}
       <div className="mt-auto pt-6 border-t border-slate-800 space-y-4">
-        <NavLink
+        <Button
           to="/"
-          className="flex items-center justify-center px-4 py-3 rounded-xl font-bold text-xs uppercase tracking-widest text-slate-400 hover:bg-white hover:text-slate-900 transition-all border border-slate-800"
+          className="px-4 rounded-xl py-3 text-xs border-slate-800 text-slate-400"
         >
           ← Exit to Home
-        </NavLink>
-        
+        </Button>
+
         <p className="text-[10px] text-slate-600 font-bold uppercase tracking-widest text-center">
           © 2026 Admin Panel
         </p>
