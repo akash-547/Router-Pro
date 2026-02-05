@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import Button from "../Components/Ui/Button";
+import { UserContext } from "../Context/UserContext";
 
 export const Signup = () => {
   const { login } = useAuth();
