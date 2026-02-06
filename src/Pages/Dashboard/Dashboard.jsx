@@ -8,9 +8,9 @@ const Dashboard = () => {
     <div className="max-w-4xl mx-auto">
       <div className="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100">
         <h1 className="text-3xl font-black text-slate-800">
-          Welcome back, <span className="text-orange-500">{user?.name}</span>!
+          Welcome back, <span className="text-orange-500">{user?.name || "Guest"}</span>!
         </h1>
-        <p className="text-slate-500 mt-2">You are managing the system as {user?.email}</p>
+        <p className="text-slate-500 mt-2">You are managing the system as {user?.email || "Not Logged In"}</p>
         
         <div className="grid grid-cols-2 gap-4 mt-8">
             <div className="bg-slate-50 p-6 rounded-3xl text-center">
