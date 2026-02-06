@@ -7,6 +7,10 @@ const Navbar = () => {
       isActive ? "text-orange-500" : "text-slate-800"
     }`;
 
+      const isAuthenticated = localStorage.getItem("token");
+
+
+
   return (
     
     <nav className="bg-[#f3f4f6] w-full border-b border-gray-300 sticky top-0 z-50">
@@ -30,6 +34,7 @@ const Navbar = () => {
           </div>
 
           {/* BUTTONS SECTION */}
+          {!isAuthenticated ?
           <div className="flex items-center gap-2">
             <Button to="/login" variant="ghost" className="px-4 py-2 text-xs">
               LOG IN
@@ -38,6 +43,12 @@ const Navbar = () => {
               SIGN UP
             </Button>
           </div>
+          :
+           <Button to="/dashboard" primary className="px-6 py-2.5 rounded-md shadow-md text-xs">
+              Dashboard
+            </Button>
+          }
+
 
         </div>
       </Container>

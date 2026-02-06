@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Button from "../Components/Ui/Button";
 import { Context } from "../Context/Context";
 
@@ -37,6 +37,12 @@ const Signup = () => {
       navigate("/dashboard");
     }, 1500);
   };
+
+  const isAuthenticated = localStorage.getItem("token");
+
+  if (isAuthenticated) {
+    return <Navigate to={"/dashboard"} />;
+  }
 
   return (
     <div className="bg-[#f8fafc] min-h-screen flex items-center justify-center px-6 relative overflow-hidden font-sans">
