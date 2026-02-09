@@ -2,35 +2,31 @@ import { useState } from "react";
 import { Context } from "./Context";
 
 const Provider = ({ children }) => {
- const [user, setUser] = useState(() => {
+  const [user, setUser] = useState(() => {
     try {
-      const storedToken = localStorage.getItem("token");
-
-      return storedToken ? JSON.parse(storedToken) : null;
+      const storedData = localStorage.getItem("token");
+      return storedData ? JSON.parse(storedData) : null;
     } catch (error) {
-      console.error("Error parsing stored token:", error);
       return null;
     }
   });
 
-  const [signedIn, setSignedIn] = useState(false);
+  const [signedIn, setSignedIn] = useState(!!user);
 
   const login = (userData) => {
     setUser(userData);
     setSignedIn(true);
-    localStorage.setItem("token" ,  JSON.stringify(userData))
+    localStorage.setItem("token", JSON.stringify(userData));
   };
 
   const logout = () => {
     setUser(null);
     setSignedIn(false);
-    localStorage.clear()
+    localStorage.clear();
   };
 
-        const isAuthenticated = localStorage.getItem("token");
-
   return (
-    <Context.Provider value={{ user, signedIn, login, logout, isAuthenticated }}>
+    <Context.Provider value={{ user, signedIn, login, logout }}>
       {children}
     </Context.Provider>
   );
